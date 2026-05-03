@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Agentic Digital Twin: an open-source robotic arm digital twin demo with an agent action loop." />
+    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+    <title>Agentic Digital Twin</title>
+  </head>
+  <body>
+    <div id="app" class="page-shell">
+      <section class="hero" aria-label="Agentic Digital Twin introduction">
+        <div class="hero-card">
+          <p class="eyebrow">Agentic Digital Twin · Open Workbench</p>
+          <h1>Simulate first.<br />Act with agents.</h1>
+          <p class="lede">A browser-based digital twin for robotic workcells: shared state, 3D simulation, safety gating, action audit, and an agent harness that turns intent into operations.</p>
+          <div class="metric-grid" aria-label="Demo metrics">
+            <div class="metric"><strong>6 DOF</strong><span>robotic arm model</span></div>
+            <div class="metric"><strong>0 secrets</strong><span>local static demo</span></div>
+            <div class="metric"><strong>Agent loop</strong><span>sense → plan → simulate → apply</span></div>
+          </div>
+        </div>
+        <div class="agent-card">
+          <p class="eyebrow">Agent Console</p>
+          <h2>Natural goal → twin action plan</h2>
+          <textarea id="intent">Inspect the end effector and report vibration.</textarea>
+          <div class="button-row">
+            <button class="primary" data-plan>Plan & apply</button>
+            <button data-reset>Reset twin</button>
+            <button data-copy-snapshot>Copy JSON snapshot</button>
+          </div>
+          <pre class="plan-output" data-plan-output>Ready. Choose an action or ask the agent to plan.</pre>
+        </div>
+      </section>
+
+      <section class="workbench" aria-label="3D digital twin workbench">
+        <div class="scene" data-scene>
+          <div class="scene-badge"><span>THREE.JS DIGITAL TWIN</span><span>joint-safe simulation</span></div>
+        </div>
+        <aside class="side">
+          <p class="eyebrow">Operational twin</p>
+          <h2>Robotic arm cell</h2>
+          <div class="status-line"><span>Safety gate</span><strong class="safety" data-safety>NOMINAL</strong></div>
+          <div class="button-row">
+            <button data-action="inspection-pose">Inspection</button>
+            <button data-action="reach-fixture">Reach fixture</button>
+            <button data-action="safe-fold">Safe fold</button>
+            <button data-animate>Auto animate</button>
+          </div>
+          <div class="panel"><h3>Joints</h3><div data-joints></div></div>
+          <div class="panel"><h3>Sensors</h3><ul class="list" data-sensors></ul></div>
+          <div class="panel"><h3>Audit events</h3><ul class="list" data-events></ul></div>
+          <div class="panel"><h3>Snapshot</h3><pre data-snapshot>{}</pre></div>
+        </aside>
+      </section>
+
+      <section class="docs" aria-label="Project pillars">
+        <article class="doc-card"><h2>Semantic</h2><p>Assets, joints, sensors, actions, and constraints are modeled as portable JSON objects.</p></article>
+        <article class="doc-card"><h2>Kinetic</h2><p>Agents propose action types; the twin clamps and gates every joint target before updating state.</p></article>
+        <article class="doc-card"><h2>Audit</h2><p>Every applied or blocked action becomes an event that agents and humans can inspect.</p></article>
+      </section>
+      <footer>Built and maintained with support from the WhiteMirror AI Team.</footer>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

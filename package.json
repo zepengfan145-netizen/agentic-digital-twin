@@ -1,0 +1,29 @@
+{
+  "name": "agentic-digital-twin",
+  "version": "0.1.0",
+  "private": false,
+  "type": "module",
+  "description": "An open-source agentic digital twin workbench with a browser-based robotic arm demo.",
+  "license": "MIT",
+  "keywords": ["digital-twin", "agentic-ai", "robotics", "threejs", "simulation", "manufacturing"],
+  "homepage": "https://agentic-digital-twin.vercel.app",
+  "files": ["dist/", "src/", "docs/", "examples/", "skills/", "public/", "index.html", "README.md", "LICENSE", "CHANGELOG.md", "CONTRIBUTING.md", "SECURITY.md"],
+  "scripts": {
+    "dev": "vite --host 127.0.0.1 --port 4188",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1 --port 4189",
+    "test": "node --test",
+    "lint": "node scripts/lint.mjs",
+    "pack:check": "npm pack --dry-run",
+    "verify": "npm run lint && npm test && npm run build && npm run pack:check"
+  },
+  "dependencies": {
+    "three": "^0.184.0"
+  },
+  "devDependencies": {
+    "vite": "^7.2.7"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

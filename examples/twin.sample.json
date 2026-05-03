@@ -1,0 +1,57 @@
+{
+  "name": "Agentic Digital Twin",
+  "version": "0.1.0",
+  "metadata": {
+    "source": "open-demo",
+    "domain": "robotic-workcell",
+    "license": "MIT"
+  },
+  "assets": [
+    {
+      "id": "arm-01",
+      "kind": "robot-arm",
+      "label": "6-axis robotic arm"
+    }
+  ],
+  "joints": [
+    {
+      "id": "base",
+      "target": 18,
+      "min": -95,
+      "max": 95,
+      "unit": "deg"
+    },
+    {
+      "id": "shoulder",
+      "target": 34,
+      "min": 10,
+      "max": 78,
+      "unit": "deg"
+    },
+    {
+      "id": "elbow",
+      "target": -62,
+      "min": -104,
+      "max": -18,
+      "unit": "deg"
+    }
+  ],
+  "actions": [
+    {
+      "id": "safe-fold",
+      "patch": {
+        "base": -24,
+        "shoulder": 64,
+        "elbow": -96
+      }
+    }
+  ],
+  "events": [
+    {
+      "id": "evt-demo-ready",
+      "actor": "system",
+      "actionId": "boot",
+      "status": "applied"
+    }
+  ]
+}
