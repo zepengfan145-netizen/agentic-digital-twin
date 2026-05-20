@@ -7,7 +7,8 @@ import { i18n, MlCadViewer } from '@mlightcad/cad-viewer';
 import { AcApDocManager, AcApSettingManager, AcEdOpenMode } from '@mlightcad/cad-simple-viewer';
 
 const params = new URLSearchParams(window.location.search);
-const cadUrl = params.get('url') || undefined;
+const cadUrlParam = params.get('url') || undefined;
+const cadUrl = cadUrlParam ? new URL(cadUrlParam, window.location.origin).href : undefined;
 const cadName = params.get('name') || 'CAD Viewer';
 
 document.querySelector('[data-cad-title]').textContent = cadName;
