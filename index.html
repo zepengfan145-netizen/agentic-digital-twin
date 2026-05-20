@@ -49,6 +49,16 @@
           </div>
           <div class="panel"><h3>Joints</h3><div data-joints></div></div>
           <div class="panel"><h3>Sensors</h3><ul class="list" data-sensors></ul></div>
+          <div class="panel">
+            <h3>CAD assets</h3>
+            <form class="asset-upload" data-asset-upload>
+              <input type="file" name="file" accept=".glb,.gltf,.stl,.step,.stp,.iges,.igs,.dwg,.dxf,.obj" />
+              <button type="submit">Upload</button>
+            </form>
+            <ul class="asset-list" data-cad-assets>
+              <li><span>Start API server to load assets.</span></li>
+            </ul>
+          </div>
           <div class="panel"><h3>Audit events</h3><ul class="list" data-events></ul></div>
           <div class="panel"><h3>Snapshot</h3><pre data-snapshot>{}</pre></div>
         </aside>

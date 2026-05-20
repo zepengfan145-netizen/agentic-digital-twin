@@ -8,3 +8,10 @@ dist/
 *.log
 coverage/
 .vercel
+.npm-cache/
+server/data/*.db
+server/data/*.db-*
+server/uploads/cad/*
+server/uploads/models/*
+!server/uploads/cad/.gitkeep
+!server/uploads/models/.gitkeep

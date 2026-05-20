@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Browser-based DWG and DXF viewer for Agentic Digital Twin CAD assets." />
+    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+    <title>CAD Viewer · Agentic Digital Twin</title>
+  </head>
+  <body>
+    <div class="cad-viewer-shell">
+      <header class="cad-viewer-topbar">
+        <a href="/" aria-label="Back to workbench">Workbench</a>
+        <strong data-cad-title>CAD Viewer</strong>
+        <span data-cad-source></span>
+      </header>
+      <main id="cad-viewer-app" class="cad-viewer-app"></main>
+    </div>
+    <script type="module" src="/src/cadViewerApp.js"></script>
+  </body>
+</html>

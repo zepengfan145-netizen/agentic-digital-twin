@@ -65,6 +65,16 @@ button.is-running { color: var(--text); border-color: rgba(255,107,90,.8); backg
 .list li { display: flex; align-items: center; justify-content: space-between; gap: 10px; color: var(--muted); border-top: 1px solid rgba(255,255,255,.07); padding-top: 10px; }
 .list strong { color: var(--text); }
 .list code { color: var(--accent); }
+.asset-upload { display: grid; grid-template-columns: 1fr auto; gap: 10px; align-items: center; margin-bottom: 12px; }
+.asset-upload input { min-width: 0; color: var(--muted); border: 1px solid var(--line); border-radius: 8px; padding: 9px; background: #0a1012; }
+.asset-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+.asset-list li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 10px; align-items: center; color: var(--muted); border-top: 1px solid rgba(255,255,255,.07); padding-top: 10px; }
+.asset-list strong, .asset-list small { display: block; }
+.asset-list strong { color: var(--text); overflow-wrap: anywhere; }
+.asset-list small { color: var(--muted); font-size: 11px; }
+.asset-actions { display: flex; gap: 8px; align-items: center; }
+.asset-list button, .asset-button { min-height: 34px; padding: 0 12px; border-radius: 8px; }
+.asset-button { display: inline-flex; align-items: center; color: var(--text); text-decoration: none; border: 1px solid rgba(124,247,200,.28); background: #1c292b; font-size: 13px; }
 .docs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 22px; }
 .doc-card { padding: 20px; }
 .doc-card p { color: var(--muted); line-height: 1.6; }

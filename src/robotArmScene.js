@@ -1,6 +1,8 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { RoundedBoxGeometry } from 'three/examples/jsm/geometries/RoundedBoxGeometry.js';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+import { STLLoader } from 'three/examples/jsm/loaders/STLLoader.js';
 
 function deg(value) {
   return THREE.MathUtils.degToRad(value);
@@ -47,6 +49,48 @@ export function createRobotArmScene(mount, twin, onFrame = () => {}) {
 
   function addEdges(mesh, threshold = 28) {
     mesh.add(new THREE.LineSegments(new THREE.EdgesGeometry(mesh.geometry, threshold), edgeMaterial));
+  }
+  const importedModelRoot = new THREE.Group();
+  importedModelRoot.name = 'Imported CAD model';
+  scene.add(importedModelRoot);
+
+  function clearImportedModel() {
+    importedModelRoot.traverse(disposeObject);
+    importedModelRoot.clear();
+  }
+  function fitImportedModel(object) {
+    const bounds = new THREE.Box3().setFromObject(object);
+    const size = bounds.getSize(new THREE.Vector3());
+    const center = bounds.getCenter(new THREE.Vector3());
+    const maxAxis = Math.max(size.x, size.y, size.z, 0.001);
+    const scale = 2.6 / maxAxis;
+    object.position.sub(center);
+    object.scale.multiplyScalar(scale);
+    object.position.x -= 2.7;
+    object.position.y += 0.08;
+  }
+  function setImportedModel(url, format) {
+    clearImportedModel();
+    const normalizedFormat = String(format || url.split('.').at(-1)).toLowerCase();
+    if (normalizedFormat === 'glb' || normalizedFormat === 'gltf') {
+      const loader = new GLTFLoader();
+      loader.load(url, (gltf) => {
+        fitImportedModel(gltf.scene);
+        importedModelRoot.add(gltf.scene);
+      });
+      return;
+    }
+    if (normalizedFormat === 'stl') {
+      const loader = new STLLoader();
+      loader.load(url, (geometry) => {
+        geometry.computeVertexNormals();
+        const mesh = new THREE.Mesh(geometry, materials.metal.clone());
+        mesh.castShadow = true;
+        mesh.receiveShadow = true;
+        fitImportedModel(mesh);
+        importedModelRoot.add(mesh);
+      });
+    }
   }
   function box(parent, size, position, material, options = {}) {
     const geometry = options.radius
@@ -241,6 +285,8 @@ export function createRobotArmScene(mount, twin, onFrame = () => {}) {
   return {
     setTargets,
     setAutoAnimate,
+    setImportedModel,
+    clearImportedModel,
     dispose() {
       renderer.setAnimationLoop(null);
       resizeObserver.disconnect();
